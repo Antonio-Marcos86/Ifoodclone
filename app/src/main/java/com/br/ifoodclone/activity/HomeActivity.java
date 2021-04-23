@@ -42,9 +42,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         inicializaComponente();
         autenticacao= ConfiguracaoFirebase.getFirebaseAutenticacao();
         firebaseRef = ConfiguracaoFirebase.getFirebase();
+
+
         // Configurações da toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Ifood");
@@ -161,8 +164,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void inicializaComponente(){
-        recyclerEmpresa= findViewById(R.id.ReciclerEmpresa);
-        searchView=findViewById(R.id.materialsearchview);
+        recyclerEmpresa = findViewById(R.id.ReciclerEmpresa);
+        searchView = findViewById(R.id.materialsearchview);
     }
 
 
