@@ -94,12 +94,11 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
                     editEmpresaCategoria.setText(empresa.getCategoria());
                     editEmpresaTempo.setText(empresa.getTempo());
                     editEmpresaTaxa.setText(empresa.getPrecoEntrega().toString());
-                    urlImagemSelecionada = empresa.getUrlImagem();
                     // recupera a imagem de perfil
+                    urlImagemSelecionada = empresa.getUrlImagem();
                     if(urlImagemSelecionada != ""){
                         Picasso.get().load(urlImagemSelecionada).into(imagemEmpresaPerfil);
                     }
-
                 }
             }
 
