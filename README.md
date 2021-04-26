@@ -64,7 +64,7 @@ Contribuições são sempre bem-vindas. Existem várias maneiras de contribuir c
 
 ## Licença
 
-Sem lincença
+MIT License
 
 ## Status do Projeto
 
