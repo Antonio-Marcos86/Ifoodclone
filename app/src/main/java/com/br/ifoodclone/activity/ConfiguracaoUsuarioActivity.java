@@ -54,18 +54,33 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
         idUsuarioLogado = usuarioFirebase.getIdUsuario();
         // Configurações da toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Configurações usuário");
+        toolbar.setTitle("Configurações");
         setSupportActionBar(toolbar);
         // Para mostrar a seta de voltar para home
         // Necessário configurar no AndroidManifests
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Configurando a imagem
+        imagemUsuarioPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                );
+
+                if (i.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(i, SELECAO_GALERIA);
+                }
+            }
+        });
         recuperarDados();
 
 
     }
     private void recuperarDados() {
-        DatabaseReference empresaRef = firebaseRef.child("empresas").child(idUsuarioLogado);
-        empresaRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference usuarioRef = firebaseRef.child("usuario").child(idUsuarioLogado);
+        usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 if (datasnapshot.getValue() != null) {
@@ -73,7 +88,7 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
                     editUsuarioNome.setText(usuario.getNome());
                     editUsuarioEnderenco.setText(usuario.getEndereco());
                     editUsuarioCep.setText(usuario.getCep());
-                    editUsuarioCidade.setText(usuario.getCidade().toString());
+                    editUsuarioCidade.setText(usuario.getCidade());
                     // recupera a imagem de perfil
                     urlImagemSelecionada = usuario.getUrlImagem();
                     if(urlImagemSelecionada != ""){
@@ -113,10 +128,8 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
 
                     final StorageReference imagemRef = storageReference
                             .child("imagens")
-                            .child("empresas")
+                            .child("usuario")
                             .child(idUsuarioLogado + ".jpeg");
-                    //String nomeArquivo = UUID.randomUUID().toString();
-                    // final StorageReference imagemRef = imagens.child(nomeArquivo + ".jpeg");
 
                     // Tarefa de Upload
                     UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
