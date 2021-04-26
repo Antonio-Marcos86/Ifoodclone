@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.br.ifoodclone.R;
 import com.br.ifoodclone.adapters.AdapterEmpresa;
 import com.br.ifoodclone.adapters.AdapterProduto;
 import com.br.ifoodclone.helpers.ConfiguracaoFirebase;
+import com.br.ifoodclone.listener.RecyclerItemClickListener;
 import com.br.ifoodclone.model.Empresa;
 import com.br.ifoodclone.model.Produto;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,6 +75,29 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
        });
+
+        // Configurar evento de clique
+        recyclerEmpresa.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerEmpresa, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Empresa empresaSelecionada = empresas.get(position);
+                        Intent i = new Intent(HomeActivity.this,CardapioActivity.class);
+                        i.putExtra("empresa",empresaSelecionada);
+                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                })
+        );
 
   }
 

@@ -4,8 +4,9 @@ import com.br.ifoodclone.helpers.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
 
 import java.awt.font.NumericShaper;
+import java.io.Serializable;
 
-public class Empresa {
+public class Empresa implements Serializable {
     private String idUsuario;
     private String urlImagem;
     private String nome;

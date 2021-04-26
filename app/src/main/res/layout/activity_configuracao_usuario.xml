@@ -4,12 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.ConfiguracaoUsuarioActivity">
 
     <include
-     layout="@layout/toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemPerfilUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/perfil"
+            app:civ_border_color="#FF0000"
+            app:civ_border_width="2dp" />
+
+        <EditText
+            android:id="@+id/editUsuarioNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bd_edit_text"
+            android:hint="Nome"
+            android:layout_marginBottom="8dp"
+            android:inputType="text"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/editUsuarioEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bd_edit_text"
+            android:hint="Categoria"
+            android:layout_marginBottom="8dp"
+            android:inputType="text"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/editUsuarioCep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bd_edit_text"
+            android:hint="CEP"
+            android:layout_marginBottom="8dp"
+            android:inputType="number"
+            android:padding="16dp"/>
+        <EditText
+            android:id="@+id/editusuarioCidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bd_edit_text"
+            android:hint="Cidade-ES"
+            android:layout_marginBottom="8dp"
+            android:inputType="text"
+            android:padding="16dp"/>
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:onClick="validarDadosUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Salvar" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
