@@ -72,7 +72,36 @@
             </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/vermelho_escuro"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver carrinho"
+            android:padding="8dp"
+            android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/textCarrinhoQantidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qtd: 0"
+                android:padding="8dp"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/textCarrinhoTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 0"
+                android:padding="8dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerProdutoCardapio"
             android:layout_width="match_parent"
