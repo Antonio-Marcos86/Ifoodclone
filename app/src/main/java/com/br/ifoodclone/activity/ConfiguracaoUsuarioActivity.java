@@ -1,10 +1,14 @@
 package com.br.ifoodclone.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,9 +19,20 @@ import com.br.ifoodclone.helpers.ConfiguracaoFirebase;
 import com.br.ifoodclone.helpers.usuarioFirebase;
 import com.br.ifoodclone.model.Empresa;
 import com.br.ifoodclone.model.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 
 public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
 
@@ -44,7 +59,97 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
         // Para mostrar a seta de voltar para home
         // Necessário configurar no AndroidManifests
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recuperarDados();
 
+
+    }
+    private void recuperarDados() {
+        DatabaseReference empresaRef = firebaseRef.child("empresas").child(idUsuarioLogado);
+        empresaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                if (datasnapshot.getValue() != null) {
+                    Usuario usuario = datasnapshot.getValue(Usuario.class);
+                    editUsuarioNome.setText(usuario.getNome());
+                    editUsuarioEnderenco.setText(usuario.getEndereco());
+                    editUsuarioCep.setText(usuario.getCep());
+                    editUsuarioCidade.setText(usuario.getCidade().toString());
+                    // recupera a imagem de perfil
+                    urlImagemSelecionada = usuario.getUrlImagem();
+                    if(urlImagemSelecionada != ""){
+                        Picasso.get().load(urlImagemSelecionada).into(imagemUsuarioPerfil);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            Bitmap imagem = null;
+
+            try {
+                switch (requestCode) {
+                    case SELECAO_GALERIA:
+                        Uri localImagem = data.getData();
+                        imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagem);
+                        break;
+                }
+                if (imagem != null) {
+                    imagemUsuarioPerfil.setImageBitmap(imagem);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                    byte[] dadosImagem = baos.toByteArray();
+
+                    // Configurando o Storage
+
+                    final StorageReference imagemRef = storageReference
+                            .child("imagens")
+                            .child("empresas")
+                            .child(idUsuarioLogado + ".jpeg");
+                    //String nomeArquivo = UUID.randomUUID().toString();
+                    // final StorageReference imagemRef = imagens.child(nomeArquivo + ".jpeg");
+
+                    // Tarefa de Upload
+                    UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
+
+
+
+                    // Em caso de falha no upload
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ConfiguracaoUsuarioActivity.this, "Erro ao fazer o upload da imagem", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            imagemRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+
+                                    Uri url= task.getResult();
+                                    urlImagemSelecionada =url.toString();
+
+                                }
+                            });
+
+                            Toast.makeText(ConfiguracaoUsuarioActivity.this,"Sucesso ao fazer upload da imagem",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void validarDadosUsuario(View View) {
