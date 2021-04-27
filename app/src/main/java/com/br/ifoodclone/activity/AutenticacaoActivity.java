@@ -157,7 +157,7 @@ public class AutenticacaoActivity extends AppCompatActivity {
     // Método responsável por abrir a tela principal
     private void abrirTelaPrincipal(String tipoUsuario) {
         if(tipoUsuario.equals("E")){
-            startActivity(new Intent(getApplicationContext(), EmpresaActivity.class));
+            startActivity(new Intent(getApplicationContext(), PedidoActivity.class));
             finish();
         }else {
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));

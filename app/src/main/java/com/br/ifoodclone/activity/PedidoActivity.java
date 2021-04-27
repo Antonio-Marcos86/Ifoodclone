@@ -94,14 +94,14 @@ public class PedidoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pedidos.clear();
-                if( dataSnapshot.getValue()!= null){
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                        Pedido pedido = ds.getValue(Pedido.class);
-                        pedidos.add(pedido);
-                    }
-                    adapterPedido.notifyDataSetChanged();
-                    dialog.dismiss();
+
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    Pedido pedido = ds.getValue(Pedido.class);
+                    pedidos.add(pedido);
                 }
+                adapterPedido.notifyDataSetChanged();
+                dialog.dismiss();
+
             }
 
             @Override
