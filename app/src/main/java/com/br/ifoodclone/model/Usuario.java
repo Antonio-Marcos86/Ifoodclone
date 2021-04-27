@@ -67,6 +67,5 @@ public class Usuario {
         DatabaseReference usuarioRef = firebaseRef.child("usuario").child(getIdUsuario());
         usuarioRef.setValue(this);
 
-
     }
 }

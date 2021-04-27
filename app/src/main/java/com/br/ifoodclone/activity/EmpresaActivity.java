@@ -52,7 +52,7 @@ public class EmpresaActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Ifood");
         setSupportActionBar(toolbar);
-
+        // Configura recyclerview
         recyclerProdutos.setLayoutManager( new LinearLayoutManager(this ) );
         recyclerProdutos.setHasFixedSize( true );
         adapterProduto = new AdapterProduto( produtos, this );
@@ -108,6 +108,9 @@ public class EmpresaActivity extends AppCompatActivity {
             case R.id.menuNovoProduto:
                 abrirNovoProduto();
                 break;
+            case R.id.menuPedidos:
+                abrirPedidos();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -143,6 +146,9 @@ public class EmpresaActivity extends AppCompatActivity {
     private void abrirNovoProduto() {
         startActivity(new Intent(this,NovoProdutoEmpresaActivity.class));
     }
+    private void abrirPedidos() {
+        startActivity(new Intent(this,PedidoActivity.class));
+    }
 
     private void deslogarUsuario() {
             try{
@@ -151,7 +157,6 @@ public class EmpresaActivity extends AppCompatActivity {
             }catch(Exception e){
                 e.printStackTrace();
             }
-            
     }
     private void inicializaComponentes() {
         recyclerProdutos = findViewById(R.id.recyclerEmpresas);

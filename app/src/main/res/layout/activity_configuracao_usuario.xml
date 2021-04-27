@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bd_edit_text"
-            android:hint="Categoria"
+            android:hint="Endereço"
             android:layout_marginBottom="8dp"
             android:inputType="text"
             android:padding="16dp"/>
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bd_edit_text"
-            android:hint="Cidade-ES"
+            android:hint="Telefone"
             android:layout_marginBottom="8dp"
             android:inputType="text"
             android:padding="16dp"/>

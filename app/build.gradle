@@ -51,7 +51,10 @@ dependencies {
 // Material Search View
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    // depedência de progresso
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 // Imagem Circular
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    // mascara de moeda
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 }

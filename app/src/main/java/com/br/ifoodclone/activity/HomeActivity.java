@@ -88,18 +88,14 @@ public class HomeActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onLongItemClick(View view, int position) {
-
-                    }
+                    public void onLongItemClick(View view, int position) { }
 
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    }
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) { }
                 })
         );
 
-  }
+    }
 
    private void pesquisarEmpresas(String minhaPesquisa){
         DatabaseReference empresaRef = firebaseRef.child("empresas");

@@ -14,9 +14,7 @@ public class Empresa implements Serializable {
     private String categoria;
     private Double precoEntrega;
 
-    public Empresa() {
-       
-    }
+    public Empresa() { }
 
     public String getIdUsuario() {
         return idUsuario;
@@ -71,8 +69,5 @@ public class Empresa implements Serializable {
         DatabaseReference empresaRef = firebaseRef.child("empresas").child(getIdUsuario());
         empresaRef.setValue(this);
 
-
     }
-
-
 }
