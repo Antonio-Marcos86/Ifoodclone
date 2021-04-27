@@ -68,5 +68,5 @@ MIT License
 
 ## Status do Projeto
 
-Projeto em andamento.
+Finalizado
  
