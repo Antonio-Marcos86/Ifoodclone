@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IfoodClone">
-        <activity android:name=".activity.PedidoActivity"
-            android:parentActivityName=".activity.EmpresaActivity"/>
+        <activity android:name=".activity.PedidoActivity" />
         <activity
             android:name=".activity.CardapioActivity"
             android:parentActivityName=".activity.HomeActivity" />
@@ -23,8 +22,9 @@
             android:parentActivityName=".activity.EmpresaActivity" />
         <activity
             android:name=".activity.ConfiguracoesEmpresaActivity"
-            android:parentActivityName=".activity.EmpresaActivity" />
-        <activity android:name=".activity.EmpresaActivity" />
+            android:parentActivityName=".activity.PedidoActivity" />
+        <activity android:name=".activity.EmpresaActivity"
+            android:parentActivityName=".activity.PedidoActivity"  />
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.AutenticacaoActivity" />
         <activity android:name=".activity.MainActivity">

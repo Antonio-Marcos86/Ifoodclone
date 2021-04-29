@@ -52,6 +52,10 @@ public class EmpresaActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Ifood");
         setSupportActionBar(toolbar);
+        // Para mostrar a seta de voltar para home(empresaActivity)
+        // Necessário configurar no AndroidManisfest
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Configura recyclerview
         recyclerProdutos.setLayoutManager( new LinearLayoutManager(this ) );
         recyclerProdutos.setHasFixedSize( true );

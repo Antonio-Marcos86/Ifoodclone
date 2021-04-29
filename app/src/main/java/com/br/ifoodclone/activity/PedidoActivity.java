@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -19,6 +23,7 @@ import com.br.ifoodclone.helpers.usuarioFirebase;
 import com.br.ifoodclone.listener.RecyclerItemClickListener;
 import com.br.ifoodclone.model.Pedido;
 import com.br.ifoodclone.model.Produto;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +42,7 @@ public class PedidoActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private DatabaseReference firebaseRef;
     private String idEmpresa;
+    private FirebaseAuth autenticacao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +50,13 @@ public class PedidoActivity extends AppCompatActivity {
         inicializaComponentes();
         firebaseRef = ConfiguracaoFirebase.getFirebase();
         idEmpresa = usuarioFirebase.getIdUsuario();
+        autenticacao= ConfiguracaoFirebase.getFirebaseAutenticacao();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Pedidos");
         setSupportActionBar(toolbar);
-        // Para mostrar a seta de voltar para home(empresaActivity)
-        // Necessário configurar no AndroidManisfest
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         // Configura recyclerview
         recyclerPedido.setLayoutManager( new LinearLayoutManager(this ) );
@@ -76,6 +82,36 @@ public class PedidoActivity extends AppCompatActivity {
 
             }
         }));
+    }
+    // Criando as opções do menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_empresa, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // Verificando a opção selecionada no menu pelo usuário
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuSair:
+                deslogarUsuario();
+                break;
+            case R.id.menuConfiguracoes:
+                abrirCOnfiguracoes();
+                break;
+            case R.id.menuNovoProduto:
+                abrirNovoProduto();
+                break;
+            case R.id.menuPedidos:
+                abrirPedidos();
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void recuperarPedidos() {
@@ -110,7 +146,26 @@ public class PedidoActivity extends AppCompatActivity {
             }
         });
     }
+    private void abrirCOnfiguracoes() {
+        startActivity(new Intent(this,ConfiguracoesEmpresaActivity.class));
+    }
+    private void abrirNovoProduto() {
+        startActivity(new Intent(this,NovoProdutoEmpresaActivity.class));
+    }
 
+
+    private void deslogarUsuario() {
+        try {
+            autenticacao.signOut();
+            startActivity(new Intent(this, AutenticacaoActivity.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void abrirPedidos() {
+        startActivity(new Intent(this,EmpresaActivity.class));
+    }
     private void inicializaComponentes() {
         recyclerPedido = findViewById(R.id.recyclerPedidos);
 
