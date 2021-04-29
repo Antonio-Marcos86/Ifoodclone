@@ -10,7 +10,7 @@ public class Usuario {
     private String nome;
     private String endereco;
     private String cep;
-    private String cidade;
+    private String telefone;
     public Usuario() {
     }
 
@@ -54,12 +54,12 @@ public class Usuario {
         this.cep = cep;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public void salvar(){

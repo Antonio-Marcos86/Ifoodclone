@@ -59,7 +59,7 @@
             android:inputType="number"
             android:padding="16dp"/>
         <EditText
-            android:id="@+id/editusuarioCidade"
+            android:id="@+id/editusuarioTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bd_edit_text"

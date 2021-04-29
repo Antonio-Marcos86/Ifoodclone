@@ -36,7 +36,7 @@ import java.io.ByteArrayOutputStream;
 
 public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
 
-    private EditText editUsuarioNome, editUsuarioEnderenco, editUsuarioCep, editUsuarioCidade;
+    private EditText editUsuarioNome, editUsuarioEnderenco, editUsuarioCep, editUsuarioTelefone;
     private ImageView imagemUsuarioPerfil;
     private StorageReference storageReference;
     private DatabaseReference firebaseRef;
@@ -88,7 +88,7 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
                     editUsuarioNome.setText(usuario.getNome());
                     editUsuarioEnderenco.setText(usuario.getEndereco());
                     editUsuarioCep.setText(usuario.getCep());
-                    editUsuarioCidade.setText(usuario.getCidade());
+                    editUsuarioTelefone.setText(usuario.getTelefone());
                     // recupera a imagem de perfil
                     urlImagemSelecionada = usuario.getUrlImagem();
                     if(urlImagemSelecionada != ""){
@@ -170,7 +170,7 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
         String nome = editUsuarioNome.getText().toString();
         String endereco = editUsuarioEnderenco.getText().toString();
         String cep = editUsuarioCep.getText().toString();
-        String cidade = editUsuarioCidade.getText().toString();
+        String cidade = editUsuarioTelefone.getText().toString();
 
         if (!nome.isEmpty()) {
             if (!endereco.isEmpty()) {
@@ -182,7 +182,7 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
                         usuario.setNome(nome);
                         usuario.setEndereco(endereco);
                         usuario.setCep(cep);
-                        usuario.setCidade(cidade);
+                        usuario.setTelefone(cidade);
                         usuario.setUrlImagem(urlImagemSelecionada);
                         usuario.salvar();
                         exibirMensagem("Dados salvos com sucesso!");
@@ -212,7 +212,7 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
         editUsuarioNome = findViewById(R.id.editUsuarioNome);
         editUsuarioEnderenco = findViewById(R.id.editUsuarioEndereco);
         editUsuarioCep = findViewById(R.id.editUsuarioCep);
-        editUsuarioCidade = findViewById(R.id.editusuarioCidade);
+        editUsuarioTelefone = findViewById(R.id.editusuarioTelefone);
         imagemUsuarioPerfil = findViewById(R.id.imagemPerfilUsuario);
     }
 }

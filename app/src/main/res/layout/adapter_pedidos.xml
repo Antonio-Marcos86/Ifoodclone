@@ -10,7 +10,7 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:text="Jamilton damasceno"
+        android:text="Antonio Marcos"
         android:layout_marginBottom="8dp"
         android:id="@+id/textPedidoNome"/>
 
@@ -20,7 +20,12 @@
         android:textSize="14sp"
         android:text="Endereço: rua almeida prado, 1300"
         android:id="@+id/textPedidoEndereco"/>
-
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="14sp"
+        android:text="Telefone: 99999999"
+        android:id="@+id/textPedidotelefone"/>
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

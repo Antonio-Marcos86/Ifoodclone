@@ -146,7 +146,7 @@ public class CardapioActivity extends AppCompatActivity {
                     pedidoRecuperado.setNome(usuario.getNome());
                     pedidoRecuperado.setEndereco(usuario.getEndereco());
                     pedidoRecuperado.setCep(usuario.getCep());
-                    pedidoRecuperado.setTelefone(usuario.getCidade());
+                    pedidoRecuperado.setTelefone(usuario.getTelefone());
                     pedidoRecuperado.setItens(itensCarrinho);
                     pedidoRecuperado.salvar();
                 }
@@ -309,7 +309,5 @@ public class CardapioActivity extends AppCompatActivity {
         textTempoEmpresa = findViewById(R.id.textTempoEmpresa);
         textCarrinhoQtd = findViewById(R.id.textCarrinhoQuantidade);
         textCarrinhoTotal = findViewById(R.id.textCarrinhoTotal);
-
-
     }
 }
