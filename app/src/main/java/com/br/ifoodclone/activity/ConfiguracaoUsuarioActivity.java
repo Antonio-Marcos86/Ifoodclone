@@ -75,8 +75,6 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
             }
         });
         recuperarDados();
-
-
     }
     private void recuperarDados() {
         DatabaseReference usuarioRef = firebaseRef.child("usuario").child(idUsuarioLogado);
@@ -86,9 +84,9 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
                 if (datasnapshot.getValue() != null) {
                     Usuario usuario = datasnapshot.getValue(Usuario.class);
                     editUsuarioNome.setText("Nome: " + usuario.getNome());
-                    editUsuarioEnderenco.setText("Endereço: "+usuario.getEndereco());
-                    editUsuarioCep.setText("Cep: "+usuario.getCep());
-                    editUsuarioTelefone.setText("Telefone: "+usuario.getTelefone());
+                    editUsuarioEnderenco.setText("Endereço: "+ usuario.getEndereco());
+                    editUsuarioCep.setText("Cep: "+ usuario.getCep());
+                    editUsuarioTelefone.setText("Telefone: "+ usuario.getTelefone());
                     // recupera a imagem de perfil
                     urlImagemSelecionada = usuario.getUrlImagem();
                     if(urlImagemSelecionada != ""){
