@@ -85,10 +85,10 @@ public class ConfiguracaoUsuarioActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 if (datasnapshot.getValue() != null) {
                     Usuario usuario = datasnapshot.getValue(Usuario.class);
-                    editUsuarioNome.setText(usuario.getNome());
-                    editUsuarioEnderenco.setText(usuario.getEndereco());
-                    editUsuarioCep.setText(usuario.getCep());
-                    editUsuarioTelefone.setText(usuario.getTelefone());
+                    editUsuarioNome.setText("Nome: " + usuario.getNome());
+                    editUsuarioEnderenco.setText("Endereço: "+usuario.getEndereco());
+                    editUsuarioCep.setText("Cep: "+usuario.getCep());
+                    editUsuarioTelefone.setText("Telefone: "+usuario.getTelefone());
                     // recupera a imagem de perfil
                     urlImagemSelecionada = usuario.getUrlImagem();
                     if(urlImagemSelecionada != ""){

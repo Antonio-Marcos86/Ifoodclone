@@ -30,6 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:textSize="14sp"
+        android:text="Cep: 888888-888"
+        android:id="@+id/textPedidoCep"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="14sp"
         android:text="Pgto: Dinheiro"
         android:id="@+id/textPedidoPgto"/>
 
