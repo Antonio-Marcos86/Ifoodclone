@@ -75,8 +75,8 @@ public class CardapioActivity extends AppCompatActivity {
             empresaSelecionada = (Empresa) bundle.getSerializable("empresa");
             textNomeEmpresaCardapio.setText(empresaSelecionada.getNome());
             textCategoriaEmpresa.setText(empresaSelecionada.getCategoria());
-            textTempoEmpresa.setText("Tempo entrega " + empresaSelecionada.getTempo());
-            textEntregaEmpresa.setText("Taxa entrega R$  " + empresaSelecionada.getPrecoEntrega().toString());
+            textTempoEmpresa.setText("Tempo " + empresaSelecionada.getTempo());
+            textEntregaEmpresa.setText("entrega R$  " + empresaSelecionada.getPrecoEntrega().toString());
             idEmpresa = empresaSelecionada.getIdUsuario();
 
             String url = empresaSelecionada.getUrlImagem();
