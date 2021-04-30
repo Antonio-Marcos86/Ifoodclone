@@ -6,8 +6,8 @@ public class ItemPedido {
     private int quantidade;
     private Double preco;
 
-    public ItemPedido() {
-    }
+
+    public ItemPedido() { }
 
     public String getIdProduto() {
         return idProduto;

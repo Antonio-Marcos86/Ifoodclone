@@ -195,16 +195,17 @@ public class CardapioActivity extends AppCompatActivity {
                 qtdItensCarrinho = 0;
                 totalCarrinho = 0.0;
                 itensCarrinho = new ArrayList<>();
+
                 if(dataSnapshot.getValue() != null){
                     pedidoRecuperado = dataSnapshot.getValue(Pedido.class);
                     itensCarrinho = pedidoRecuperado.getItens();
-
                     for(ItemPedido itemPedido : itensCarrinho){
                         int qtde = itemPedido.getQuantidade();
                         Double preco = itemPedido.getPreco();
                         totalCarrinho += (qtde * preco);
                         qtdItensCarrinho += qtde;
                     }
+                    totalCarrinho = totalCarrinho + empresaSelecionada.getPrecoEntrega();
                 }
                 DecimalFormat df = new DecimalFormat("0.00");
                 textCarrinhoQtd.setText("qtde: " + String.valueOf(qtdItensCarrinho) );
