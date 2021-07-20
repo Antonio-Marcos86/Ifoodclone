@@ -11,6 +11,7 @@ public class Usuario {
     private String endereco;
     private String cep;
     private String telefone;
+
     public Usuario() {
     }
 

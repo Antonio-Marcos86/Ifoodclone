@@ -68,7 +68,8 @@ public class AutenticacaoActivity extends AppCompatActivity {
                 if (!email.isEmpty()) {// Verifica o Email
                     if (!senha.isEmpty()) {// Verifica a Senha
                         if (tipoAcesso.isChecked()) { // Cadastro // Verificamos o estado do Switch
-                            autenticacao.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            autenticacao.createUserWithEmailAndPassword(email, senha)
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
@@ -106,7 +107,8 @@ public class AutenticacaoActivity extends AppCompatActivity {
                             });
 
                         } else { // Login
-                            autenticacao.signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            autenticacao.signInWithEmailAndPassword(email, senha)
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
